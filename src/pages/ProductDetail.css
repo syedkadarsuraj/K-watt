@@ -1,0 +1,222 @@
+/* ===== MAIN CONTAINER ===== */
+.product-detail-container {
+  padding: 60px 80px;
+  background-color: #fff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #111;
+  min-height: 80vh;
+}
+
+/* ===== CONTENT WRAPPER (GRID FIX) ===== */
+.product-detail-content {
+  display: grid; /* ✅ grid fixes text flow under image */
+  grid-template-columns: auto 1fr;
+  align-items: start;
+  justify-content: center;
+  gap: 40px;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+}
+
+/* ===== IMAGE SECTION ===== */
+.image-section {
+  grid-column: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.main-image {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  object-fit: contain;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  cursor: pointer; /* ✅ cleaner than zoom-in — matches click behavior */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.main-image:hover {
+  transform: scale(1.03); /* ✅ subtle hover lift effect */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+}
+
+
+/* ===== TEXT SECTION ===== */
+.product-detail-text {
+  grid-column: 2;
+  text-align: left;
+  min-width: 0;
+}
+
+.product-detail-text h2 {
+  font-size: 1.8rem;
+  color: #002E5D;
+  margin-bottom: 15px;
+}
+
+.product-detail-text p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #333;
+  text-align: justify;
+}
+
+/* ===== TECHNICAL SPECS ===== */
+.technical-specs {
+  text-align: left;
+  margin-top: 25px;
+  width: 100%;
+  grid-column: 1 / -1; /* ✅ ensures it flows below both image & text */
+}
+
+.technical-specs h3 {
+  color: #002E5D;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #002E5D;
+  display: inline-block;
+  padding-bottom: 3px;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-button {
+  display: inline-block;
+  margin-top: 25px;
+  padding: 10px 20px;
+  background-color: #008080;
+  color: #fff;
+  font-weight: 600;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #006666;
+}
+
+/* ===== RESPONSIVE FIXES ===== */
+@media (max-width: 992px) {
+  .product-detail-container {
+    padding: 30px 20px;
+  }
+
+  .product-detail-content {
+    grid-template-columns: 1fr; /* ✅ stack image + text vertically */
+    padding: 20px;
+  }
+
+  .image-section {
+    grid-column: 1;
+    justify-content: center;
+  }
+
+  .main-image {
+    max-width: 200px;
+    margin-bottom: 20px;
+  }
+
+  .product-detail-text {
+    grid-column: 1;
+    width: 100%;
+    text-align: left;
+  }
+
+  .technical-specs {
+    grid-column: 1;
+    width: 100%;
+  }
+
+  .product-detail-text h2 {
+    font-size: 1.5rem;
+  }
+
+  .product-detail-text p {
+    font-size: 0.95rem;
+  }
+}
+/* ===== IMAGE ZOOM OVERLAY ===== */
+.zoom-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+.zoomed-image {
+  max-width: 90%;
+  max-height: 85%;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+  cursor: default;
+  animation: zoomIn 0.3s ease;
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* ===== HOVER ZOOM CURSOR ===== */
+/* ===== CLOSE BUTTON ===== */
+.close-zoom-btn {
+  position: absolute;
+  top: 25px;
+  right: 35px;
+  background: rgba(255, 255, 255, 0.9);
+  border: none;
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #222;
+  cursor: pointer;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  z-index: 10000;
+}
+
+.close-zoom-btn:hover {
+  background: #008080;
+  color: white;
+  transform: scale(1.05);
+}
+
